@@ -1,0 +1,20 @@
+##Looping in T test###
+##http://stackoverflow.com/questions/15222773/how-to-write-a-loop-to-run-the-t-test-of-a-data-frame##
+
+t.data=read.csv("tt.csv", header=T, sep=",")
+##Method 1##
+t.test1=lapply(t.data[,1:4], function(x) t.test(x ~ t.data$group))
+#loops t.test function for all the variables over the two groups#tapply also works!
+pvalue=sapply(t.test1, "[", "p.value")#extracting pvalues from the list
+
+##Method 2##
+t.test2=sapply(t.data[,1:4], function(x) t.test(x ~ t.data$group),simplify=T)#simplifies the result 
+
+
+##Method 3##
+t.test3=lapply(names(t.data)[1:4],function(x)t.test(as.formula(paste(x,"group",sep="~")),data=t.data))
+#similar to previous methods, names allows us choose column names, paste allows us to paste the variables into the formula
+
+
+
+

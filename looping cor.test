@@ -1,0 +1,12 @@
+
+##Pearson corelation##
+cor=lapply(t.data[,1:3], function(x) cor(x , t.data[,4]))
+
+#Cor.test#
+cor.test=lapply(t.data[,1:3], function(x) cor.test(x , t.data[,4]))
+cor.test=sapply(t.data[,1:3], function(x) cor.test(x , t.data[,4]),simplify=T)
+cor.test
+str(cor.test)
+
+
+
